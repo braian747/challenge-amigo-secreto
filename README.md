@@ -1,6 +1,6 @@
 # Amigo secreto 
 
-<div align="center">![pagina principal](assets/amigo-secreto.png)</div>
+![logo de la aplicación](assets/amigo-secreto.png)
 
 En este desafío, desarrollarás una aplicación que permita a los usuarios ingresar nombres de amigos en una lista para luego realizar un sorteo aleatorio y determinar quién es el "amigo secreto".
 
