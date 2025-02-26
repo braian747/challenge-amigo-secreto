@@ -45,7 +45,6 @@ function elegirAmigoSecreto() {
             return elegirAmigoSecreto();
         } else {
             amigosSorteados.push(amigoElegido);
-            console.log(amigosSorteados);
             return amigoElegido;
         }
     }
