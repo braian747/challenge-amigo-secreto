@@ -5,34 +5,45 @@ let amigosSorteados = [];
 
 function agregarAmigo() {
     let amigo = document.getElementById('amigo').value;
-    (amigo == '') ? alert("Ingrese un nombre válido") : amigos.push(amigo);
-    limpiarInput();
-    mostrarLista();    
+    if (amigo == '') {
+        alert("Por favor, inserte un nombre.") 
+    } else if (amigos.includes(amigo)) {
+        alert(`El nombre "${amigo}" ya ha sido ingresado.`)
+        } else amigos.push(amigo);
+    limpiarInput();   
+    actualizarLista();
 
 }
 function limpiarInput() {
     document.querySelector('#amigo').value = '';
 }
 
-function mostrarLista() {
-    let lista = '';
+function actualizarLista() {
+    let lista = document.getElementById('listaAmigos');
+    lista.innerHTML="";
+
     for (let i = 0; i < amigos.length; i++){
-       lista=lista+amigos[i]+'<br>';
+        const li = document.createElement("li");
+        li.textContent = amigos[i];
+        lista.appendChild(li);
     }
-    asignarTextoPorID('listaAmigos', lista);
 }
+
 function sortearAmigo() {
-    let amigoSecreto = elegirAmigoSecreto();
-    asignarTextoPorID('listaAmigos', '');
-    let texto = 'El amigo secreto es: ' + amigoSecreto;
-    if (amigosSorteados.length == amigos.length) {
-        texto = amigoSecreto;
-    }
-    asignarTextoPorID('resultado', texto);
+    if (amigos.length > 0) {
+        let amigoSecreto = elegirAmigoSecreto();
+        asignarTextoPorID('listaAmigos', '');
+        let texto = 'El amigo secreto es: ' + amigoSecreto;
+        if (amigosSorteados.length == amigos.length) {//si ya se sortearon todos los amigos no mostrar "el amigo secreto es..."
+            texto = amigoSecreto;
+        }
+        asignarTextoPorID('resultado', texto);
+    } else asignarTextoPorID('resultado', 'No hay amigos para sortear');
+    
 }
 
 function elegirAmigoSecreto() {
-    numeroMaximo = amigos.length;
+    let numeroMaximo = amigos.length;
     let numeroAleatorio = Math.floor(Math.random() * numeroMaximo); //selecciona aleatoriamente una posicion del array de amigos
     let amigoElegido = amigos[numeroAleatorio];
     //Si ya sorteamos todos los amigos
